@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class NameSelector : MonoBehaviour
 
     void Start()
     {
+
         if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -32,4 +34,29 @@ public class NameSelector : MonoBehaviour
         PlayerPrefs.SetString(PlayerNameKey, nameField.text);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    //Test
+/*    void Startsss()
+    {
+        if (!Permission.HasUserAuthorizedPermission(Permission.inter))
+        {
+            Permission.RequestUserPermission(Permission.INTERNET);
+        }
+    }*/
+
+/*    void Update()
+    {
+        if (Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork)
+        {
+            Debug.Log("use wwifi");
+        }
+        else if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
+        {
+            Debug.Log("use 3g");
+        }
+        else
+        {
+            Debug.Log("no Internet.");
+        }
+    }*/
+
 }
