@@ -1,4 +1,4 @@
-
+#if UNITY_SERVER || UNITY_EDITOR || UNITY_ANDROID
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Unity.Services.Matchmaker.Models;
 using Unity.Services.Multiplay;
 using UnityEngine;
+
 
 public class MultiplayAllocationService : IDisposable
 {
@@ -167,3 +168,4 @@ public class MultiplayAllocationService : IDisposable
         serverEvents?.UnsubscribeAsync();
     }
 }
+#endif

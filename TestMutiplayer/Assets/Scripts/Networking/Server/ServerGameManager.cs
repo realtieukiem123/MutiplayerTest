@@ -1,22 +1,9 @@
-
+#if UNITY_SERVER || UNITY_EDITOR || UNITY_ANDROID
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Unity.Netcode;
-using Unity.Netcode.Transports.UTP;
-using Unity.Networking.Transport.Relay;
-using Unity.Services.Lobbies;
-using Unity.Services.Relay;
-using Unity.Services.Relay.Models;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
-using Unity.Services.Lobbies.Models;
-using System.Text;
-using Unity.Services.Authentication;
 
 public class ServerGameManager : IDisposable
 {
@@ -34,6 +21,8 @@ public class ServerGameManager : IDisposable
         networkServer = new NetworkServer(manager);
         multiplayAllocationService = new MultiplayAllocationService();
     }
+
+
     public async Task StartGameServerAsync()
     {
         await multiplayAllocationService.BeginServerCheck();
@@ -44,9 +33,11 @@ public class ServerGameManager : IDisposable
         }
         NetworkManager.Singleton.SceneManager.LoadScene(GameSceneName, LoadSceneMode.Single);
     }
+
     public void Dispose()
     {
         multiplayAllocationService?.Dispose();
         networkServer?.Dispose();
     }
 }
+#endif

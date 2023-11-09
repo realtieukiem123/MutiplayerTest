@@ -1,6 +1,4 @@
-
-using System.Collections;
-using System.Collections.Generic;
+#if UNITY_SERVER || UNITY_EDITOR || UNITY_ANDROID
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -14,6 +12,7 @@ public class ApplicationController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         await LauchInMode(SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null);
     }
+
     private async Task LauchInMode(bool isDedicatedServer)
     {
         if (isDedicatedServer)
@@ -39,4 +38,6 @@ public class ApplicationController : MonoBehaviour
             }
         }
     }
+
 }
+#endif
